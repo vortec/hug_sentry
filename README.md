@@ -20,7 +20,7 @@ This is how you create a Redis store:
 
 ```python
 from raven import Client
-from hug_sentry import SentryHandler
+from hug_sentry import SentryExceptionHandler
 
 # Create Raven client
 client = Client('https://<key>:<secret>@app.getsentry.com/<project>')
