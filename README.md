@@ -22,8 +22,13 @@ This is how you create a Redis store:
 from raven import Client
 from hug_sentry import SentryHandler
 
+# Create Raven client
 client = Client('https://<key>:<secret>@app.getsentry.com/<project>')
-handler = SentryHandler(client)
+
+# Create exception handler
+handler = SentryExceptionHandler(client)
+
+# Add to hug
 __hug__.http.add_exception_handler(Exception, handler)
 ```
 
