@@ -1,5 +1,5 @@
 class SentryExceptionHandler:
-    exclude = None
+    exclude = type(None)
 
     def __init__(self, client):
         self.client = client
