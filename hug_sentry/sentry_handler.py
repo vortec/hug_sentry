@@ -4,7 +4,7 @@ class SentryExceptionHandler:
     def __init__(self, client):
         self.client = client
 
-    def __call__(self, request, response, exception):
+    def __call__(self, request, response, exception, **xargs):
         data = {
             'request': {
                 'url': request.url,
