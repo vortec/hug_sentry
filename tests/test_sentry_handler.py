@@ -1,4 +1,4 @@
-import app
+from . import app
 import hug
 from hug_sentry import SentryExceptionHandler
 from unittest.mock import Mock
@@ -20,6 +20,22 @@ def test_sentry_handler():
     assert 'request' in data
     assert data['request']['method'] == 'GET'
     assert data['request']['query_string'] == 'amount=2'
+
+
+def test_sentry_handler_with_routing_parameters():
+    client = Mock()
+    handler = SentryExceptionHandler(client)
+    app.__hug__.http.add_exception_handler(Exception, handler)
+
+    with pytest.raises(Exception):
+        hug.test.get(app, 'routing_fail/' + str(2))
+
+    assert client.captureException.called
+
+    data = client.captureException.call_args[1]['data']
+    assert 'user' in data
+    assert 'request' in data
+    assert data['request']['method'] == 'GET'
 
 
 def test_clean_environment():
