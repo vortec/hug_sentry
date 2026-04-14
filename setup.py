@@ -48,7 +48,7 @@ setup(
         'raven'
     ],
     tests_require=[
-        'pytest==2.9.0'
+        'pytest==9.0.3'
     ],
 
     cmdclass={
